@@ -1,0 +1,144 @@
+.image-gallery-slide img {
+    background: #fff6f3;
+    max-height: 600px;
+    height: 100vh;
+    overflow-y: scroll;
+  }
+  .image-gallery-slide {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  
+  }
+  .image-gallery-content.fullscreen .image-gallery-slide img {
+    background: black;
+    max-height: 100vh;
+  }
+  .image-gallery-content .image-gallery-description span,
+  .image-gallery-fullscreen-button.active:hover::before,
+  .image-gallery-left-nav:hover::before,
+  .image-gallery-right-nav:hover::before {
+    color: ghostwhite;
+    color: white;
+  }
+  .image-gallery-slides:hover {
+    cursor: pointer;
+  }
+  .image-gallery-content.fullscreen .image-gallery-slides:hover {
+    cursor: auto;
+  }
+  .image-gallery-description-sharing {  
+    position: absolute;
+    left: unset;
+    right: 0;
+    bottom:0;
+  }
+  .image-gallery-fullscreen-button.active::before {
+    content: "\F2D7";
+  }
+  .image-gallery-content .image-gallery-description,
+  .image-gallery-content.fullscreen .image-gallery-fullscreen-button,
+  .image-gallery-description-sharing,
+  .image-gallery-index,
+  .image-gallery-left-nav,
+  .image-gallery-right-nav {
+    visibility: hidden;
+  }  
+  .image-gallery-content:hover .image-gallery-index,
+  .image-gallery-content:hover .image-gallery-left-nav,
+  .image-gallery-content:hover .image-gallery-right-nav,
+  .image-gallery-content.fullscreen:hover .image-gallery-description,
+  .image-gallery-content.fullscreen:hover .image-gallery-description .image-gallery-description-sharing,
+  .image-gallery-content.fullscreen:hover .image-gallery-fullscreen-button {
+    visibility: visible;
+  }
+  .image-gallery-content .image-gallery-description {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 20px 25px 40px 25px;
+  }
+  .image-gallery-content.fullscreen .image-gallery-fullscreen-button {
+    margin-right: 0;
+  }
+  .image-gallery-fullscreen-button {
+    position: absolute;
+    top: 0;
+    bottom: auto;
+    right: 0;
+    left: auto;
+    background: rgba(0, 0, 0, 0.4);
+  }
+  .image-gallery-index {
+    position: absolute;
+    top: 0;
+    right: auto;
+    left: 0;
+    padding: 20px;
+  }
+  .image-gallery-left-nav,
+  .image-gallery-right-nav {
+    margin: 0 20px;
+  }
+  .image-gallery-thumbnail {
+    height: auto;
+    max-width: 100px;
+  }
+  .image-gallery-thumbnail img {
+    height: auto;
+    width: 100px;
+  }
+  .image-gallery-fullscreen-button.active::before,
+  .image-gallery-fullscreen-button::before,
+  .image-gallery-left-nav::before,
+  .image-gallery-right-nav::before {
+    transition: transform .2s ease-in-out;
+  }
+  .image-gallery-fullscreen-button.active:hover::before,
+  .image-gallery-left-nav:hover::before,
+  .image-gallery-right-nav:hover::before {
+    transform: scale(1.1);
+  }
+  @media (max-width: 768px) {
+    .image-gallery-content .image-gallery-description span::before {
+      font-size: 25px;
+    }
+    .image-gallery-fullscreen-button::before {
+      font-size: 24px;
+    }
+    .image-gallery-content.fullscreen .image-gallery-slide img {
+      background: black;
+      height: 100vh;
+      height: calc(var(--vh, 1vh) * 100);
+    }
+    .image-gallery-description {
+       margin-bottom: 44px;
+    }
+    .image-gallery-description span {
+      font-size: 14px;
+    }
+    .image-gallery-fullscreen-button::before,
+    .image-gallery-index {
+      padding: 10px;
+    }
+    .image-gallery-slide img {
+      background: black;
+    }
+    .image-gallery-content .image-gallery-fullscreen-button,
+    .image-gallery-content.fullscreen .image-gallery-left-nav,
+    .image-gallery-content.fullscreen .image-gallery-right-nav {
+      visibility: hidden;
+    }
+    .image-gallery-content .image-gallery-left-nav,
+    .image-gallery-content .image-gallery-right-nav,
+    .image-gallery-content.fullscreen .image-gallery-fullscreen-button,
+    .image-gallery-content.fullscreen .image-gallery-fullscreen-button,
+    .image-gallery-content.fullscreen .image-gallery-description,
+    .image-gallery-content.fullscreen .image-gallery-description-sharing,
+    .image-gallery-content.fullscreen .image-gallery-index {
+      visibility: visible;
+    }
+  }
+  
