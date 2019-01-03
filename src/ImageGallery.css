@@ -2,7 +2,6 @@
     background: #fff6f3;
     max-height: 600px;
     height: 100vh;
-    overflow-y: scroll;
   }
   .image-gallery-slide {
     position: absolute;
@@ -10,6 +9,7 @@
     bottom: 0;
     left: 0;
     right: 0;
+    overflow-y: scroll;
   
   }
   .image-gallery-content.fullscreen .image-gallery-slide img {
@@ -139,9 +139,9 @@
       visibility: visible;
     }
     @media screen and (orientation:portrait) {
-      .image-gallery-description {
-        margin-bottom: 25px;
-      }
+      /* .image-gallery-description {
+        margin-bottom: 28px;
+      } */
       .image-gallery-content.fullscreen .image-gallery-fullscreen-button,
       .image-gallery-content.fullscreen .image-gallery-index {
         top: 30px;
