@@ -181,14 +181,12 @@ class ImageGallery extends React.Component {
         />
     );
     FullscreenButton = () => (
-        <div>
-            <button
-                type="button"
-                className={
-                    `image-gallery-fullscreen-button${this.state.isFullscreen ? ' active' : ''}`}
-                onClick={this.toggleFullScreen}
-            />
-        </div>
+        <button
+            type="button"
+            className={
+                `image-gallery-fullscreen-button${this.state.isFullscreen ? ' active' : ''}`}
+            onClick={this.toggleFullScreen}
+        />
     )
     LeftNav = () => (
         <button

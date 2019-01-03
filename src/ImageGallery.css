@@ -113,9 +113,6 @@
       height: 100vh;
       height: calc(var(--vh, 1vh) * 100);
     }
-    .image-gallery-description {
-       margin-bottom: 44px;
-    }
     .image-gallery-description span {
       font-size: 14px;
     }
@@ -139,6 +136,19 @@
     .image-gallery-content.fullscreen .image-gallery-description-sharing,
     .image-gallery-content.fullscreen .image-gallery-index {
       visibility: visible;
+    }
+    .image-gallery-description {
+       margin-bottom: 30px;
+    }
+    .image-gallery-content.fullscreen .image-gallery-fullscreen-button,
+    .image-gallery-content.fullscreen .image-gallery-index {
+      top: 44px;
+    }
+    .image-gallery-content.fullscreen .image-gallery-fullscreen-button {
+      right: 10px;
+    }
+    .image-gallery-content.fullscreen .image-gallery-index {
+      left: 10px;
     }
   }
   
