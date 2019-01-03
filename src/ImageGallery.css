@@ -137,18 +137,20 @@
     .image-gallery-content.fullscreen .image-gallery-index {
       visibility: visible;
     }
-    .image-gallery-description {
-       margin-bottom: 30px;
-    }
-    .image-gallery-content.fullscreen .image-gallery-fullscreen-button,
-    .image-gallery-content.fullscreen .image-gallery-index {
-      top: 30px;
-    }
-    .image-gallery-content.fullscreen .image-gallery-fullscreen-button {
-      right: 10px;
-    }
-    .image-gallery-content.fullscreen .image-gallery-index {
-      left: 10px;
+    @media screen and (orientation:portrait) {
+      .image-gallery-description {
+        margin-bottom: 25px;
+      }
+      .image-gallery-content.fullscreen .image-gallery-fullscreen-button,
+      .image-gallery-content.fullscreen .image-gallery-index {
+        top: 30px;
+      }
+      .image-gallery-content.fullscreen .image-gallery-fullscreen-button {
+        right: 10px;
+      }
+      .image-gallery-content.fullscreen .image-gallery-index {
+        left: 10px;
+      }
     }
   }
   
