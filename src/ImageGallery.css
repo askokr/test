@@ -62,7 +62,7 @@
   }
   .image-gallery-content.fullscreen .image-gallery-fullscreen-button {
     margin-right: 0;
-    padding: 0;
+    padding: 0 !important;
   }
   .image-gallery-fullscreen-button {
     position: absolute;
