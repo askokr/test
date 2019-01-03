@@ -112,9 +112,6 @@
     height: 100vh;
     height: calc(var(--vh, 1vh) * 100);
   }
-  .image-gallery-description {
-     margin-bottom: 44px;
-  }
   .image-gallery-description span {
     font-size: 14px;
   }
