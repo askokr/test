@@ -31,7 +31,7 @@ const StyledSpan = styled.span`
 
 class MobileSharing extends Component {
   componentDidMount() {
-    this.ShareArea.parentElement.style.marginTop = '0px';
+    // this.ShareArea.parentElement.style.marginTop = '0px';
   }
 
   changeHidden = () => {
