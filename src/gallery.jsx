@@ -7,6 +7,7 @@ import 'react-image-gallery/styles/css/image-gallery.css';
 
 import PinchToZoom from 'react-pinch-and-zoom';
 import PinchZoomPan from "react-responsive-pinch-zoom-pan";
+import { MapInteractionCSS } from 'react-map-interaction';
 
 import { MediaQuery } from './title/MediaQuery';
 import { imageWithWidth, imageSourceset, updateHistory } from './title/imageHelpers';
@@ -177,7 +178,7 @@ class ImageGallery extends React.Component {
     )
     GalleryMainImage = item => (
         <ImageContainer onClick={() => this.textHider()}>
-            <PinchZoomPan>
+            <PinchToZoom>
                 <ImageInFull
                     src={item.original}
                     alt={item.originalAlt}
@@ -186,7 +187,7 @@ class ImageGallery extends React.Component {
                     objectFit="contain"
                     isFullscreen={this.state.isFullscreen}
                 />
-            </PinchZoomPan>
+            </PinchToZoom>
             <div className="image-gallery-description" style={{ display: this.state.displayText ? 'inline-block' : 'none' }}>
                 <ImageGalleryTitle
                     text={item.info.text}
