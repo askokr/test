@@ -126,13 +126,15 @@ class ImageGallery extends React.Component {
         }
     };
     handleWheel = (event) => {
-        event.preventDefault();
-        const direction = event.deltaY;
-        if (direction > 0) {
-            this.navigateToNext();
-        }
-        if (direction < 0) {
-            this.navigateToPrevious();
+        if (this.state.isFullscreen) {
+            event.preventDefault();
+            const direction = event.deltaY;
+            if (direction > 0) {
+                this.navigateToNext();
+            }
+            if (direction < 0) {
+                this.navigateToPrevious();
+            }
         }
     }
     handleTouch = event => event.preventDefault();
@@ -176,7 +178,7 @@ class ImageGallery extends React.Component {
         <span className="AAA">{this.props.images.length} {this.props.images.length === 1 ? 'onePhoto' : 'severalPhotos'}</span>
     )
     GalleryMainImage = item => (
-        <ImageContainer>
+        <ImageContainer onClick={() => this.textHider()}>
             <PinchToZoom>
                 <ImageInFull
                     src={item.original}
@@ -187,7 +189,7 @@ class ImageGallery extends React.Component {
                     isFullscreen={this.state.isFullscreen}
                 />
             </PinchToZoom>
-            <div className="image-gallery-description">
+            <div className="image-gallery-description" style={{ display: this.state.displayText ? 'inline-block' : 'none' }}>
                 <ImageGalleryTitle
                     text={item.info.text}
                     authors={item.info.authors}

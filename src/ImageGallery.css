@@ -1,28 +1,3 @@
-.AAA {
-  z-index: 1;
-  position: absolute;
-  color:white;
-  top: 0;
-  left: 0;
-  background: rgba(0, 0, 0, 0.4);
-  padding: 27.6px 30px;
-  font-weight: bold;
-  border-radius: 0 0 10px 0;
-}
-@media (max-width: 768px) {
-  .AAA {
-    padding: 20.2px;
-    font-size: 13px;
-  }
-}
-
-.image-gallery-content .image-gallery-description div {
-  transition: height 2s ease-in-out;
-}
-
-.image-gallery-slide img {
-  background: #fff6f3;
-}
 .image-gallery-content.fullscreen .image-gallery-slide img {
   background: #000000;
   max-height: 100vh;
@@ -53,9 +28,9 @@
 .image-gallery-fullscreen-button.active::before {
   content: "\58";
 }
-/* .image-gallery-content .image-gallery-description, */
+.image-gallery-content .image-gallery-description,
 .image-gallery-content.fullscreen .image-gallery-fullscreen-button,
-/* .image-gallery-description-sharing, */
+.image-gallery-description-sharing,
 .image-gallery-index,
 .image-gallery-left-nav,
 .image-gallery-right-nav {
