@@ -14,6 +14,11 @@ class App extends Component {
         url: 'https://images.pexels.com/photos/39317/chihuahua-dog-puppy-cute-39317.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
         author: 'Sina',
         text: 'zzz',
+      },
+      {
+        url: 'https://images.pexels.com/photos/374898/pexels-photo-374898.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260',
+        author: 'Sina',
+        text: 'auh!',
       }
     ]
     return (
