@@ -45,6 +45,8 @@ const ImageInFull = styled(ObjectFitImage)`
 `;
 
 class ImageGallery extends React.Component {
+    imgRef = React.createRef();
+    pinchToZoom = null;
     state = {
         currentIndex: 0,
         isFullscreen: false,
@@ -58,6 +60,9 @@ class ImageGallery extends React.Component {
                 this.handleSlide(index);
             }
         }
+        if (this.imgRef.current) {
+            this.pinchToZoom = new PinchToZoom(this.imgRef.current);
+        }
     }
     componentWillUpdate(nextProps, nextState) {
         if (nextState.isFullscreen) {
@@ -70,6 +75,9 @@ class ImageGallery extends React.Component {
             window.removeEventListener('wheel', this.handleWheel);
             window.removeEventListener('touchmove', this.handleTouch);
             window.removeEventListener('touchend', this.handleTouchEnd);
+        }
+        if (this.pinchToZoom) {
+            this.pinchToZoom.unsubscibe();
         }
     }
     componentDidUpdate() {
@@ -173,16 +181,17 @@ class ImageGallery extends React.Component {
     )
     GalleryMainImage = item => (
         <ImageContainer>
-            <PinchToZoom>
-                <ImageInFull
-                    src={item.original}
-                    alt={item.originalAlt}
-                    srcSet={item.srcSet}
-                    style={{ maxWidth: '100%' }}
-                    objectFit="contain"
-                    isFullscreen={this.state.isFullscreen}
-                />
-            </PinchToZoom>
+            {/* <PinchToZoom> */}
+            <ImageInFull
+                ref={this.imgRef}
+                src={item.original}
+                alt={item.originalAlt}
+                srcSet={item.srcSet}
+                style={{ maxWidth: '100%' }}
+                objectFit="contain"
+                isFullscreen={this.state.isFullscreen}
+            />
+            {/* </PinchToZoom> */}
             <div className="image-gallery-description">
                 <ImageGalleryTitle
                     text={item.info.text}
