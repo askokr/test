@@ -1,10 +1,30 @@
+.AAA {
+  z-index: 1;
+  position: absolute;
+  color:white;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 27.6px 30px;
+  font-weight: bold;
+  border-radius: 0 0 10px 0;
+}
+@media (max-width: 768px) {
+  .AAA {
+    padding: 20.2px;
+    font-size: 13px;
+  }
+}
+
+.image-gallery-content .image-gallery-description div {
+  transition: height 2s ease-in-out;
+}
+
 .image-gallery-slide img {
   background: #fff6f3;
-  max-height: 600px;
-  height: 100vh;
 }
 .image-gallery-content.fullscreen .image-gallery-slide img {
-  background: black;
+  background: #000000;
   max-height: 100vh;
 }
 .image-gallery-content .image-gallery-description span,
@@ -12,7 +32,7 @@
 .image-gallery-left-nav:hover::before,
 .image-gallery-right-nav:hover::before {
   color: ghostwhite;
-  color: white;
+  color: #ffffff;
 }
 .image-gallery-slides:hover {
   cursor: pointer;
@@ -26,17 +46,21 @@
   right: 0;
   bottom:0;
 }
-.image-gallery-fullscreen-button.active::before {
-  content: "\F2D7";
+.image-gallery-fullscreen-button::before {
+  font-family: aripaev;
+  content: "\50";
 }
-.image-gallery-content .image-gallery-description,
+.image-gallery-fullscreen-button.active::before {
+  content: "\58";
+}
+/* .image-gallery-content .image-gallery-description, */
 .image-gallery-content.fullscreen .image-gallery-fullscreen-button,
-.image-gallery-description-sharing,
+/* .image-gallery-description-sharing, */
 .image-gallery-index,
 .image-gallery-left-nav,
 .image-gallery-right-nav {
   visibility: hidden;
-}  
+}
 .image-gallery-content:hover .image-gallery-index,
 .image-gallery-content:hover .image-gallery-left-nav,
 .image-gallery-content:hover .image-gallery-right-nav,
@@ -49,7 +73,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  padding: 20px 25px 40px 25px;
+  padding: 0 0 10px 10px;
 }
 .image-gallery-content.fullscreen .image-gallery-fullscreen-button {
   margin-right: 0;
@@ -61,6 +85,7 @@
   right: 0;
   left: auto;
   background: rgba(0, 0, 0, 0.4);
+  border-radius: 0 0 0 10px;
 }
 .image-gallery-index {
   position: absolute;
@@ -68,6 +93,7 @@
   right: auto;
   left: 0;
   padding: 20px;
+  border-radius: 0 0 10px 0;
 }
 .image-gallery-left-nav,
 .image-gallery-right-nav {
@@ -96,11 +122,14 @@
   .image-gallery-content .image-gallery-description span::before {
     font-size: 25px;
   }
+  .image-gallery-content .image-gallery-index {
+    padding: 12px;
+  }
   .image-gallery-fullscreen-button::before {
     font-size: 24px;
   }
   .image-gallery-content.fullscreen .image-gallery-slide img {
-    background: black;
+    background: #000000;
     height: 100vh;
     height: calc(var(--vh, 1vh) * 100);
   }
@@ -111,8 +140,12 @@
   .image-gallery-index {
     padding: 10px;
   }
+  .image-gallery-content.fullscreen .image-gallery-fullscreen-button,
+  .image-gallery-content.fullscreen .image-gallery-index {
+    border-radius: 10px
+  }
   .image-gallery-slide img {
-    background: black;
+    background: #000000;
   }
   .image-gallery-content .image-gallery-fullscreen-button,
   .image-gallery-content.fullscreen .image-gallery-left-nav,
@@ -122,7 +155,6 @@
   .image-gallery-content .image-gallery-left-nav,
   .image-gallery-content .image-gallery-right-nav,
   .image-gallery-content.fullscreen .image-gallery-fullscreen-button,
-  .image-gallery-content.fullscreen .image-gallery-fullscreen-button,
   .image-gallery-content.fullscreen .image-gallery-description,
   .image-gallery-content.fullscreen .image-gallery-description-sharing,
   .image-gallery-content.fullscreen .image-gallery-index {
@@ -130,7 +162,7 @@
   }
   @media screen and (orientation:portrait) {
     .image-gallery-description {
-      margin-bottom: 28px;
+      margin-bottom: 30px;
     }
     .image-gallery-content.fullscreen .image-gallery-fullscreen-button,
     .image-gallery-content.fullscreen .image-gallery-index {
@@ -142,5 +174,19 @@
     .image-gallery-content.fullscreen .image-gallery-index {
       left: 10px;
     }
+  }
+}
+@media (width: 768px) {
+  .image-gallery-content .image-gallery-left-nav,
+  .image-gallery-content .image-gallery-right-nav {
+    visibility: hidden;
+  }
+  .image-gallery-content .image-gallery-fullscreen-button,
+  .image-gallery-content.fullscreen .image-gallery-left-nav,
+  .image-gallery-content.fullscreen .image-gallery-right-nav,
+  .image-gallery-content.fullscreen .image-gallery-description,
+  .image-gallery-content.fullscreen .image-gallery-description-sharing,
+  .image-gallery-content.fullscreen .image-gallery-index {
+    visibility: visible;
   }
 }

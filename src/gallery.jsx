@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
@@ -5,7 +6,7 @@ import ReactImageGallery from 'react-image-gallery';
 import 'react-image-gallery/styles/css/image-gallery.css';
 
 import { MediaQuery } from './title/MediaQuery';
-import { imageWithWidth, imageSourceset, shareableImage } from './title/imageHelpers';
+import { imageWithWidth, imageSourceset, updateHistory } from './title/imageHelpers';
 import { color, stack } from './title/theme';
 import Breakpoints from './title/Breakpoints';
 import ObjectFitImage from './title/ObjectFitImage';
@@ -46,6 +47,16 @@ class ImageGallery extends React.Component {
     state = {
         currentIndex: 0,
         isFullscreen: false,
+        displayText: true,
+    }
+    componentDidMount() {
+        if (this.props.galleryState !== undefined && this.props.galleryState.gallery === this.props.images[0].uuid) {
+            this.toggleFullScreen();
+            const index = parseInt(this.props.galleryState.image, 10) - 1;
+            if (index < this.props.images.length && index > 0) {
+                this.handleSlide(index);
+            }
+        }
     }
     componentWillUpdate(nextProps, nextState) {
         if (nextState.isFullscreen) {
@@ -62,8 +73,7 @@ class ImageGallery extends React.Component {
     }
     componentDidUpdate() {
         if (this.imageGallery.getCurrentIndex() !== this.state.currentIndex) {
-            // eslint-disable-next-line react/no-did-update-set-state
-            this.setState({ currentIndex: this.imageGallery.getCurrentIndex() });
+            this.handleIndexUpdate();
         }
     }
     componentWillUnmount() {
@@ -72,8 +82,13 @@ class ImageGallery extends React.Component {
         window.removeEventListener('touchmove', this.handleTouch);
         window.removeEventListener('touchend', this.handleTouchEnd);
     }
+    handleIndexUpdate() {
+        updateHistory(history, `?gallery=${this.props.images[0].uuid}&image=${this.imageGallery.getCurrentIndex() + 1}`);
+        this.setState({ currentIndex: this.imageGallery.getCurrentIndex() });
+    }
     handleSlide(slide) {
         this.imageGallery.slideToIndex(slide);
+        updateHistory(history, `?gallery=${this.props.images[0].uuid}&image=${slide + 1}`);
         this.setState({ currentIndex: slide });
     }
     handleKeyDown = (event) => {
@@ -116,7 +131,7 @@ class ImageGallery extends React.Component {
         }
     }
     handleTouch = event => event.preventDefault();
-    handleTouchEnd = () => this.setState({ currentIndex: this.imageGallery.getCurrentIndex() });
+    handleTouchEnd = () => this.handleIndexUpdate();
     navigateToPrevious = () => {
         const { currentIndex } = this.state;
         const indexDown = currentIndex - 1;
@@ -124,10 +139,8 @@ class ImageGallery extends React.Component {
         const lastSlide = this.props.images.length - 1;
         if (indexDown >= firstSlide) {
             this.handleSlide(indexDown);
-            this.setState({ currentIndex: indexDown });
         } else {
             this.handleSlide(lastSlide);
-            this.setState({ currentIndex: lastSlide });
         }
     }
     navigateToNext = () => {
@@ -137,20 +150,26 @@ class ImageGallery extends React.Component {
         const lastSlide = this.props.images.length - 1;
         if (indexUp <= lastSlide) {
             this.handleSlide(indexUp);
-            this.setState({ currentIndex: indexUp });
         } else {
             this.handleSlide(firstSlide);
-            this.setState({ currentIndex: firstSlide });
         }
     }
     toggleFullScreen = () => {
         if (this.state.isFullscreen) {
             this.imageGallery.exitFullScreen();
+            updateHistory(history, window.location.pathname);
         } else {
             this.imageGallery.fullScreen();
+            updateHistory(history, `?gallery=${this.props.images[0].uuid}&image=${this.state.currentIndex + 1}`);
         }
         this.setState({ isFullscreen: !this.state.isFullscreen });
     };
+    textHider = () => {
+        this.setState({ displayText: !this.state.displayText });
+    }
+    GallerySize = () => (
+        <span className="AAA">{this.props.images.length} {this.props.images.length === 1 ? 'onePhoto' : 'severalPhotos'}</span>
+    )
     GalleryMainImage = item => (
         <ImageContainer>
             <ImageInFull
@@ -166,7 +185,9 @@ class ImageGallery extends React.Component {
                     text={item.info.text}
                     authors={item.info.authors}
                     isFullscreen
-                    sharedText={shareableImage(this.props.images[this.state.currentIndex])}
+                    queryString={`?gallery=${this.props.images[0].uuid}&image=${this.state.currentIndex + 1}`}
+                    displayText={this.state.displayText}
+                    hideText={() => this.textHider()}
                 />
             </div>
         </ImageContainer>
@@ -176,7 +197,7 @@ class ImageGallery extends React.Component {
             src={item.original}
             alt={item.originalAlt}
             srcSet={item.srcSet}
-            style={{ maxWidth: '100%', height: 'unset' }}
+            style={{ maxWidth: '100%', height: 'unset', maxHeight: '600px', background: '#000000' }}
             objectFit="contain"
         />
     );
@@ -184,7 +205,7 @@ class ImageGallery extends React.Component {
         <button
             type="button"
             className={
-                `image-gallery-fullscreen-button${this.state.isFullscreen ? ' active' : ''}`}
+                `image-gallery-fullscreen-button${this.state.isFullscreen ? ' active' : ' inactive'}`}
             onClick={this.toggleFullScreen}
         />
     )
@@ -231,6 +252,7 @@ class ImageGallery extends React.Component {
                         onThumbnailClick={() => isFullscreen && this.forceUpdate()}
                         onClick={() => !isFullscreen && this.toggleFullScreen()}
                         additionalClass={additionalClass}
+                        renderCustomControls={!isFullscreen && this.GallerySize}
                         renderItem={isFullscreen ? this.GalleryMainImage : this.GalleryFrontImage}
                         renderLeftNav={this.LeftNav}
                         renderRightNav={this.RightNav}
@@ -251,12 +273,13 @@ class ImageGallery extends React.Component {
                         }))}
                         lazyLoad
                         showThumbnails={false}
-                        useBrowserFullscreen
+                        useBrowserFullscreen={false}
                         showPlayButton={false}
-                        showIndex
+                        showIndex={!!isFullscreen}
                         disableArrowKeys={!isFullscreen}
                         onClick={() => !isFullscreen && this.toggleFullScreen()}
                         additionalClass={additionalClass}
+                        renderCustomControls={!isFullscreen && this.GallerySize}
                         renderItem={isFullscreen ? this.GalleryMainImage : this.GalleryFrontImage}
                         renderLeftNav={this.LeftNav}
                         renderRightNav={this.RightNav}

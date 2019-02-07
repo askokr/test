@@ -28,4 +28,7 @@ export const cropSourceset = (imageUrl, cropString, maxWidth) =>
     join(','),
   )(imageWidths);
 
-export const shareableImage = image => `${'lookAtThePicture'}${image.text !== undefined ? image.text : ''} ${image.authors !== undefined ? 'photoAuthor' + image.authors.join(', ') : ''}\n${imageSourceset(image.url).split(',').pop().split(' ')}\n${'readTheArticle'}`;
+export const uuidFromUrl = url => url.substring(url.lastIndexOf('=') + 1);
+export const updateHistory = (history, input) => {
+  history.replaceState(null, null, `${input}`);
+};
