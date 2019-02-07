@@ -177,16 +177,16 @@ class ImageGallery extends React.Component {
     )
     GalleryMainImage = item => (
         <ImageContainer>
-            <PinchToZoom>
-                <ImageInFull
-                    src={item.original}
-                    alt={item.originalAlt}
-                    srcSet={item.srcSet}
-                    style={{ maxWidth: '100%' }}
-                    objectFit="contain"
-                    isFullscreen={this.state.isFullscreen}
-                />
-            </PinchToZoom>
+            {/* <PinchToZoom> */}
+            <ImageInFull
+                src={item.original}
+                alt={item.originalAlt}
+                srcSet={item.srcSet}
+                style={{ maxWidth: '100%' }}
+                objectFit="contain"
+                isFullscreen={this.state.isFullscreen}
+            />
+            {/* </PinchToZoom> */}
             <div className="image-gallery-description">
                 <ImageGalleryTitle
                     text={item.info.text}
