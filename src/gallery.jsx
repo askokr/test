@@ -231,7 +231,7 @@ class ImageGallery extends React.Component {
         const { currentIndex, isFullscreen } = this.state;
         return (
             <GalleryContainer>
-                <MediaQuery minWidth={cellPhoneBreakpoint}>
+                {/* <MediaQuery minWidth={cellPhoneBreakpoint}>
                     <ReactImageGallery
                         ref={(i) => { this.imageGallery = i; }}
                         items={images.map(({ authors, text, url }) => ({
@@ -261,7 +261,7 @@ class ImageGallery extends React.Component {
                         renderRightNav={this.RightNav}
                         renderFullscreenButton={this.FullscreenButton}
                     />
-                </MediaQuery>
+                </MediaQuery> */}
                 <MediaQuery maxWidth={cellPhoneBreakpoint}>
                     <ReactImageGallery
                         ref={(i) => { this.imageGallery = i; }}
