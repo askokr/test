@@ -3,8 +3,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import ReactImageGallery from 'react-image-gallery';
-import 'react-image-gallery/styles/css/image-gallery.css';
+
 import PinchToZoom from 'react-pinch-and-zoom';
+import PrismaZoom from 'react-prismazoom'
+import Zoombo from 'zoombo/react';
+
+import 'react-image-gallery/styles/css/image-gallery.css';
 
 import { MediaQuery } from './title/MediaQuery';
 import { imageWithWidth, imageSourceset, updateHistory } from './title/imageHelpers';
@@ -44,9 +48,11 @@ const ImageInFull = styled(ObjectFitImage)`
   background: #000;
 `;
 
+const logState = (zoomboState) => {
+    console.log('zoombo', zoomboState);
+};
+
 class ImageGallery extends React.Component {
-    imgRef = React.createRef();
-    pinchToZoom = null;
     state = {
         currentIndex: 0,
         isFullscreen: false,
@@ -60,9 +66,6 @@ class ImageGallery extends React.Component {
                 this.handleSlide(index);
             }
         }
-        if (this.imgRef.current) {
-            this.pinchToZoom = new PinchToZoom(this.imgRef.current);
-        }
     }
     componentWillUpdate(nextProps, nextState) {
         if (nextState.isFullscreen) {
@@ -75,9 +78,6 @@ class ImageGallery extends React.Component {
             window.removeEventListener('wheel', this.handleWheel);
             window.removeEventListener('touchmove', this.handleTouch);
             window.removeEventListener('touchend', this.handleTouchEnd);
-        }
-        if (this.pinchToZoom) {
-            this.pinchToZoom.unsubscibe();
         }
     }
     componentDidUpdate() {
@@ -181,17 +181,33 @@ class ImageGallery extends React.Component {
     )
     GalleryMainImage = item => (
         <ImageContainer>
-            {/* <PinchToZoom> */}
-            <ImageInFull
-                ref={this.imgRef}
-                src={item.original}
-                alt={item.originalAlt}
-                srcSet={item.srcSet}
-                style={{ maxWidth: '100%' }}
-                objectFit="contain"
-                isFullscreen={this.state.isFullscreen}
-            />
-            {/* </PinchToZoom> */}
+            <Zoombo
+                maxZoom={4}
+                initialZoom={0}
+                onStart={logState}
+                onChange={logState}
+                onEnd={logState}
+                disabled={false}
+            >
+                {(zoomboRef, zoombo /* , zoomboActions */) => (
+                    <div
+                        className={
+                            'figure' + (zoombo.isDragging ? ' figure--is-dragging' : '')
+                        }
+                        ref={zoomboRef}
+                        style={{ transform: zoombo.cssTransform }}
+                    >
+                        <ImageInFull
+                            src={item.original}
+                            alt={item.originalAlt}
+                            srcSet={item.srcSet}
+                            style={{ maxWidth: '100%' }}
+                            objectFit="contain"
+                            isFullscreen={this.state.isFullscreen}
+                        />
+                    </div>
+                )}
+            </Zoombo>
             <div className="image-gallery-description">
                 <ImageGalleryTitle
                     text={item.info.text}
