@@ -3,12 +3,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import ReactImageGallery from 'react-image-gallery';
+import 'react-image-gallery/styles/css/image-gallery.css';
 
 import PinchToZoom from 'react-pinch-and-zoom';
 import PrismaZoom from 'react-prismazoom'
 import Zoombo from 'zoombo/react';
-
-import 'react-image-gallery/styles/css/image-gallery.css';
+import PinchZoomPan from "react-responsive-pinch-zoom-pan";
 
 import { MediaQuery } from './title/MediaQuery';
 import { imageWithWidth, imageSourceset, updateHistory } from './title/imageHelpers';
@@ -47,10 +47,6 @@ const ImageInFull = styled(ObjectFitImage)`
   margin: 0 auto;
   background: #000;
 `;
-
-const logState = (zoomboState) => {
-    console.log('zoombo', zoomboState);
-};
 
 class ImageGallery extends React.Component {
     state = {
@@ -181,33 +177,16 @@ class ImageGallery extends React.Component {
     )
     GalleryMainImage = item => (
         <ImageContainer>
-            <Zoombo
-                maxZoom={4}
-                initialZoom={0}
-                onStart={logState}
-                onChange={logState}
-                onEnd={logState}
-                disabled={false}
-            >
-                {(zoomboRef, zoombo /* , zoomboActions */) => (
-                    <div
-                        className={
-                            'figure' + (zoombo.isDragging ? ' figure--is-dragging' : '')
-                        }
-                        ref={zoomboRef}
-                        style={{ transform: zoombo.cssTransform }}
-                    >
-                        <ImageInFull
-                            src={item.original}
-                            alt={item.originalAlt}
-                            srcSet={item.srcSet}
-                            style={{ maxWidth: '100%' }}
-                            objectFit="contain"
-                            isFullscreen={this.state.isFullscreen}
-                        />
-                    </div>
-                )}
-            </Zoombo>
+            <PinchToZoom>
+                <ImageInFull
+                    src={item.original}
+                    alt={item.originalAlt}
+                    srcSet={item.srcSet}
+                    style={{ maxWidth: '100%' }}
+                    objectFit="contain"
+                    isFullscreen={this.state.isFullscreen}
+                />
+            </PinchToZoom>
             <div className="image-gallery-description">
                 <ImageGalleryTitle
                     text={item.info.text}
