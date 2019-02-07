@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import ReactImageGallery from 'react-image-gallery';
 import 'react-image-gallery/styles/css/image-gallery.css';
+import PinchToZoom from 'react-pinch-and-zoom';
 
 import { MediaQuery } from './title/MediaQuery';
 import { imageWithWidth, imageSourceset, updateHistory } from './title/imageHelpers';
@@ -172,14 +173,16 @@ class ImageGallery extends React.Component {
     )
     GalleryMainImage = item => (
         <ImageContainer>
-            <ImageInFull
-                src={item.original}
-                alt={item.originalAlt}
-                srcSet={item.srcSet}
-                style={{ maxWidth: '100%' }}
-                objectFit="contain"
-                isFullscreen={this.state.isFullscreen}
-            />
+            <PinchToZoom>
+                <ImageInFull
+                    src={item.original}
+                    alt={item.originalAlt}
+                    srcSet={item.srcSet}
+                    style={{ maxWidth: '100%' }}
+                    objectFit="contain"
+                    isFullscreen={this.state.isFullscreen}
+                />
+            </PinchToZoom>
             <div className="image-gallery-description">
                 <ImageGalleryTitle
                     text={item.info.text}
