@@ -179,7 +179,7 @@ class ImageGallery extends React.Component {
     )
     GalleryMainImage = item => (
         <ImageContainer onClick={() => this.textHider()}>
-            <PrismaZoom>
+            <PrismaZoom topBoundary={120}>
                 <ImageInFull
                     src={item.original}
                     alt={item.originalAlt}
