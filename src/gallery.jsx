@@ -8,6 +8,7 @@ import 'react-image-gallery/styles/css/image-gallery.css';
 import PinchToZoom from 'react-pinch-and-zoom';
 import PinchZoomPan from "react-responsive-pinch-zoom-pan";
 import { MapInteractionCSS } from 'react-map-interaction';
+import ReactPanZoom from "@ajainarayanan/react-pan-zoom";
 import PrismaZoom from 'react-prismazoom'
 
 import { MediaQuery } from './title/MediaQuery';
@@ -179,7 +180,7 @@ class ImageGallery extends React.Component {
     )
     GalleryMainImage = item => (
         <ImageContainer onClick={() => this.textHider()}>
-            <PrismaZoom topBoundary={0} bottomBoundry={0} decelerationDuration={200} doubleTouchMaxDelay={0} scrollVelocity={0}>
+            <ReactPanZoom>
                 <ImageInFull
                     src={item.original}
                     alt={item.originalAlt}
@@ -188,7 +189,7 @@ class ImageGallery extends React.Component {
                     objectFit="contain"
                     isFullscreen={this.state.isFullscreen}
                 />
-            </PrismaZoom>
+            </ReactPanZoom>
             <div className="image-gallery-description" style={{ display: this.state.displayText ? 'inline-block' : 'none' }}>
                 <ImageGalleryTitle
                     text={item.info.text}

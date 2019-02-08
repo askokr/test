@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@ajainarayanan/react-pan-zoom": "0.0.3",
     "pinch-to-zoom": "^0.1.2",
     "prop-types": "^15.6.2",
     "qs": "^6.6.0",
