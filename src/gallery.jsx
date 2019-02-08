@@ -179,7 +179,7 @@ class ImageGallery extends React.Component {
     )
     GalleryMainImage = item => (
         <ImageContainer onClick={() => this.textHider()}>
-            <PrismaZoom topBoundary={120}>
+            <PinchToZoom topBoundary={120}>
                 <ImageInFull
                     src={item.original}
                     alt={item.originalAlt}
@@ -188,7 +188,7 @@ class ImageGallery extends React.Component {
                     objectFit="contain"
                     isFullscreen={this.state.isFullscreen}
                 />
-            </PrismaZoom>
+            </PinchToZoom>
             <div className="image-gallery-description" style={{ display: this.state.displayText ? 'inline-block' : 'none' }}>
                 <ImageGalleryTitle
                     text={item.info.text}
