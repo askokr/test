@@ -179,7 +179,7 @@ class ImageGallery extends React.Component {
     )
     GalleryMainImage = item => (
         <ImageContainer onClick={() => this.textHider()}>
-            <PinchToZoom topBoundary={120}>
+            <PrismaZoom topBoundary={0} bottomBoundry={0} decelerationDuration={200} doubleTouchMaxDelay={0} scrollVelocity={0}>
                 <ImageInFull
                     src={item.original}
                     alt={item.originalAlt}
@@ -188,7 +188,7 @@ class ImageGallery extends React.Component {
                     objectFit="contain"
                     isFullscreen={this.state.isFullscreen}
                 />
-            </PinchToZoom>
+            </PrismaZoom>
             <div className="image-gallery-description" style={{ display: this.state.displayText ? 'inline-block' : 'none' }}>
                 <ImageGalleryTitle
                     text={item.info.text}
@@ -272,6 +272,31 @@ class ImageGallery extends React.Component {
                     <ReactImageGallery
                         ref={(i) => { this.imageGallery = i; }}
                         items={images.map(({ authors, text, url }) => ({
+                            original: imageWithWidth(url, 1000),
+                            thumbnail: url.replace('preview', 'thumbnail'),
+                            info: {
+                                authors,
+                                text,
+                            },
+                            srcSet: imageSourceset(url),
+                        }))}
+                        lazyLoad
+                        showThumbnails={false}
+                        useBrowserFullscreen={false}
+                        showPlayButton={false}
+                        showIndex={!!isFullscreen}
+                        disableArrowKeys={!isFullscreen}
+                        onClick={() => !isFullscreen && this.toggleFullScreen()}
+                        additionalClass={additionalClass}
+                        renderCustomControls={!isFullscreen && this.GallerySize}
+                        renderItem={isFullscreen ? this.GalleryMainImage : this.GalleryFrontImage}
+                        renderLeftNav={this.LeftNav}
+                        renderRightNav={this.RightNav}
+                        renderFullscreenButton={this.FullscreenButton}
+                    />
+                    <ReactImageGallery
+                        ref={(i) => { this.imageGallery = i; }}
+                        items={[images[0]].map(({ authors, text, url }) => ({
                             original: imageWithWidth(url, 1000),
                             thumbnail: url.replace('preview', 'thumbnail'),
                             info: {
