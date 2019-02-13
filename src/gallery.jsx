@@ -89,7 +89,7 @@ class ImageGallery extends React.Component {
         }
     }
     componentDidUpdate() {
-        console.log(this.ZoomedIng)
+        console.log(this.zoomedImage)
         if (this.imageGallery.getCurrentIndex() !== this.state.currentIndex) {
             this.handleIndexUpdate();
         }
@@ -214,7 +214,10 @@ class ImageGallery extends React.Component {
                 ref={(i) => { this.zoomed = i }}
             /> */}
 
-            <PinchToZoom topBoundary={0} bottomBoundry={0} decelerationDuration={200} doubleTouchMaxDelay={1} scrollVelocity={0} ref={(i) => { this.ZoomedIng = i }}>
+            <PinchToZoom
+                ref={(i) => { this.zoomedImage = i }}
+                contentSize={{ width: 50, height: 50 }}
+            >
                 <ImageInFull
                     src={item.original}
                     alt={item.originalAlt}
@@ -222,6 +225,7 @@ class ImageGallery extends React.Component {
                     style={{ maxWidth: '100%' }}
                     objectFit="contain"
                     isFullscreen={this.state.isFullscreen}
+
                 />
             </PinchToZoom>
             <div className="image-gallery-description" style={{ display: this.state.displayText ? 'inline-block' : 'none' }}>
