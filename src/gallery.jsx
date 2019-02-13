@@ -11,7 +11,16 @@ import { MapInteractionCSS } from 'react-map-interaction';
 import ReactPanZoom from "@ajainarayanan/react-pan-zoom";
 import PrismaZoom from 'react-prismazoom';
 
-import Magnifier from "react-magnifier";
+// import Magnifier from "react-magnifier";
+
+import {
+    Magnifier,
+    GlassMagnifier,
+    SideBySideMagnifier,
+    PictureInPictureMagnifier,
+    MOUSE_ACTIVATION,
+    TOUCH_ACTIVATION
+} from "react-image-magnifiers";
 
 import { MediaQuery } from './title/MediaQuery';
 import { imageWithWidth, imageSourceset, updateHistory } from './title/imageHelpers';
@@ -185,6 +194,14 @@ class ImageGallery extends React.Component {
         <ImageContainer onClick={() => this.textHider()}>
 
             <Magnifier
+                imageSrc={item.original}
+                imageAlt="Example"
+                //   largeImageSrc="./large-image.jpg" // Optional
+                mouseActivation={MOUSE_ACTIVATION.DOUBLE_CLICK} // Optional
+                touchActivation={TOUCH_ACTIVATION.DOUBLE_TAP} // Optional
+            />
+
+            {/* <Magnifier
                 src={item.original}
                 // zoomImgSrc={item.large}
                 mgShape="circle"
@@ -195,7 +212,7 @@ class ImageGallery extends React.Component {
                 mgTouchOffsetY={-50}
                 mgBorderWidth={0}
                 ref={(i) => { this.zoomed = i }}
-            />
+            /> */}
 
             {/* <PinchToZoom topBoundary={0} bottomBoundry={0} decelerationDuration={200} doubleTouchMaxDelay={1} scrollVelocity={0} ref={(i) => { this.ZoomedIng = i }}>
                 <ImageInFull
