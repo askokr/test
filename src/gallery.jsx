@@ -193,13 +193,13 @@ class ImageGallery extends React.Component {
     GalleryMainImage = item => (
         <ImageContainer onClick={() => this.textHider()}>
 
-            <Magnifier
+            {/* <Magnifier
                 imageSrc={item.original}
                 imageAlt="Example"
                 //   largeImageSrc="./large-image.jpg" // Optional
                 mouseActivation={MOUSE_ACTIVATION.DOUBLE_CLICK} // Optional
                 touchActivation={TOUCH_ACTIVATION.DOUBLE_TAP} // Optional
-            />
+            /> */}
 
             {/* <Magnifier
                 src={item.original}
@@ -214,7 +214,7 @@ class ImageGallery extends React.Component {
                 ref={(i) => { this.zoomed = i }}
             /> */}
 
-            {/* <PinchToZoom topBoundary={0} bottomBoundry={0} decelerationDuration={200} doubleTouchMaxDelay={1} scrollVelocity={0} ref={(i) => { this.ZoomedIng = i }}>
+            <PinchToZoom topBoundary={0} bottomBoundry={0} decelerationDuration={200} doubleTouchMaxDelay={1} scrollVelocity={0} ref={(i) => { this.ZoomedIng = i }}>
                 <ImageInFull
                     src={item.original}
                     alt={item.originalAlt}
@@ -223,7 +223,7 @@ class ImageGallery extends React.Component {
                     objectFit="contain"
                     isFullscreen={this.state.isFullscreen}
                 />
-            </PinchToZoom> */}
+            </PinchToZoom>
             <div className="image-gallery-description" style={{ display: this.state.displayText ? 'inline-block' : 'none' }}>
                 <ImageGalleryTitle
                     text={item.info.text}
@@ -306,7 +306,7 @@ class ImageGallery extends React.Component {
                 <MediaQuery maxWidth={cellPhoneBreakpoint}>
                     <ReactImageGallery
                         ref={(i) => { this.imageGallery = i; }}
-                        items={images.map(({ authors, text, url }) => ({
+                        items={[images[0]].map(({ authors, text, url }) => ({
                             original: imageWithWidth(url, 1000),
                             thumbnail: url.replace('preview', 'thumbnail'),
                             info: {
