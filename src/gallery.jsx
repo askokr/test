@@ -306,7 +306,7 @@ class ImageGallery extends React.Component {
                 <MediaQuery maxWidth={cellPhoneBreakpoint}>
                     <ReactImageGallery
                         ref={(i) => { this.imageGallery = i; }}
-                        items={[images[0]].map(({ authors, text, url }) => ({
+                        items={images.map(({ authors, text, url }) => ({
                             original: imageWithWidth(url, 1000),
                             thumbnail: url.replace('preview', 'thumbnail'),
                             info: {
