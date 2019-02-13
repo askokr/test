@@ -217,6 +217,7 @@ class ImageGallery extends React.Component {
             <PinchToZoom
                 ref={(i) => { this.zoomedImage = i }}
                 contentSize={{ width: 50, height: 50 }}
+                boundSize={{ width: 50, height: 50 }}
             >
                 <ImageInFull
                     src={item.original}
