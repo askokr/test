@@ -9,7 +9,9 @@ import PinchToZoom from 'react-pinch-and-zoom';
 import PinchZoomPan from "react-responsive-pinch-zoom-pan";
 import { MapInteractionCSS } from 'react-map-interaction';
 import ReactPanZoom from "@ajainarayanan/react-pan-zoom";
-import PrismaZoom from 'react-prismazoom'
+import PrismaZoom from 'react-prismazoom';
+
+import Magnifier from "react-magnifier";
 
 import { MediaQuery } from './title/MediaQuery';
 import { imageWithWidth, imageSourceset, updateHistory } from './title/imageHelpers';
@@ -78,6 +80,7 @@ class ImageGallery extends React.Component {
         }
     }
     componentDidUpdate() {
+        console.log(this.ZoomedIng)
         if (this.imageGallery.getCurrentIndex() !== this.state.currentIndex) {
             this.handleIndexUpdate();
         }
@@ -180,7 +183,21 @@ class ImageGallery extends React.Component {
     )
     GalleryMainImage = item => (
         <ImageContainer onClick={() => this.textHider()}>
-            <PrismaZoom topBoundary={0} bottomBoundry={0} decelerationDuration={200} doubleTouchMaxDelay={1} scrollVelocity={0}>
+
+            <Magnifier
+                src={item.original}
+                // zoomImgSrc={item.large}
+                mgShape="circle"
+                mgWidth={400}
+                mgHeight={400}
+                zoomFactor={2}
+                mgTouchOffsetX={0}
+                mgTouchOffsetY={-50}
+                mgBorderWidth={0}
+                ref={(i) => { this.zoomed = i }}
+            />
+
+            {/* <PinchToZoom topBoundary={0} bottomBoundry={0} decelerationDuration={200} doubleTouchMaxDelay={1} scrollVelocity={0} ref={(i) => { this.ZoomedIng = i }}>
                 <ImageInFull
                     src={item.original}
                     alt={item.originalAlt}
@@ -189,7 +206,7 @@ class ImageGallery extends React.Component {
                     objectFit="contain"
                     isFullscreen={this.state.isFullscreen}
                 />
-            </PrismaZoom>
+            </PinchToZoom> */}
             <div className="image-gallery-description" style={{ display: this.state.displayText ? 'inline-block' : 'none' }}>
                 <ImageGalleryTitle
                     text={item.info.text}

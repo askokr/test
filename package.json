@@ -12,6 +12,7 @@
     "react-cursor-zoom": "^1.2.2",
     "react-dom": "^16.7.0",
     "react-image-gallery": "^0.8.12",
+    "react-magnifier": "^2.1.2",
     "react-map-interaction": "^1.2.1",
     "react-pinch-and-zoom": "^1.1.2",
     "react-prismazoom": "^1.1.2",
