@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@ajainarayanan/react-pan-zoom": "0.0.3",
     "pinch-to-zoom": "^0.1.2",
     "prop-types": "^15.6.2",
     "qs": "^6.6.0",
@@ -11,15 +10,11 @@
     "react": "^16.7.0",
     "react-cursor-zoom": "^1.2.2",
     "react-dom": "^16.7.0",
+    "react-html-parser": "^2.0.2",
     "react-image-gallery": "^0.8.12",
-    "react-image-magnifiers": "^1.0.0",
-    "react-magnifier": "^2.1.2",
-    "react-map-interaction": "^1.2.1",
     "react-pinch-and-zoom": "^1.1.2",
-    "react-prismazoom": "^1.1.2",
     "react-responsive": "^6.0.1",
-    "react-responsive-pinch-zoom-pan": "^0.1.3",
-    "react-scripts": "^2.1.3",
+    "react-scripts": "^2.1.8",
     "styled-components": "^4.1.3"
   },
   "scripts": {

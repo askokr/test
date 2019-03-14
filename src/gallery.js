@@ -3,24 +3,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import ReactImageGallery from 'react-image-gallery';
-import 'react-image-gallery/styles/css/image-gallery.css';
-
 import PinchToZoom from 'react-pinch-and-zoom';
-import PinchZoomPan from "react-responsive-pinch-zoom-pan";
-import { MapInteractionCSS } from 'react-map-interaction';
-import ReactPanZoom from "@ajainarayanan/react-pan-zoom";
-import PrismaZoom from 'react-prismazoom';
-
-// import Magnifier from "react-magnifier";
-
-import {
-    Magnifier,
-    GlassMagnifier,
-    SideBySideMagnifier,
-    PictureInPictureMagnifier,
-    MOUSE_ACTIVATION,
-    TOUCH_ACTIVATION
-} from "react-image-magnifiers";
+import 'react-image-gallery/styles/css/image-gallery.css';
 
 import { MediaQuery } from './title/MediaQuery';
 import { imageWithWidth, imageSourceset, updateHistory } from './title/imageHelpers';
@@ -193,27 +177,6 @@ class ImageGallery extends React.Component {
     GalleryMainImage = item => (
         <ImageContainer onClick={() => this.textHider()}>
 
-            {/* <Magnifier
-                imageSrc={item.original}
-                imageAlt="Example"
-                //   largeImageSrc="./large-image.jpg" // Optional
-                mouseActivation={MOUSE_ACTIVATION.DOUBLE_CLICK} // Optional
-                touchActivation={TOUCH_ACTIVATION.DOUBLE_TAP} // Optional
-            /> */}
-
-            {/* <Magnifier
-                src={item.original}
-                // zoomImgSrc={item.large}
-                mgShape="circle"
-                mgWidth={400}
-                mgHeight={400}
-                zoomFactor={2}
-                mgTouchOffsetX={0}
-                mgTouchOffsetY={-50}
-                mgBorderWidth={0}
-                ref={(i) => { this.zoomed = i }}
-            /> */}
-
             <PinchToZoom
                 ref={(i) => { this.zoomedImage = i }}
                 contentSize={{ width: 50, height: 50 }}
@@ -277,7 +240,7 @@ class ImageGallery extends React.Component {
         const { currentIndex, isFullscreen } = this.state;
         return (
             <GalleryContainer>
-                {/* <MediaQuery minWidth={cellPhoneBreakpoint}>
+                <MediaQuery minWidth={cellPhoneBreakpoint}>
                     <ReactImageGallery
                         ref={(i) => { this.imageGallery = i; }}
                         items={images.map(({ authors, text, url }) => ({
@@ -307,7 +270,7 @@ class ImageGallery extends React.Component {
                         renderRightNav={this.RightNav}
                         renderFullscreenButton={this.FullscreenButton}
                     />
-                </MediaQuery> */}
+                </MediaQuery>
                 <MediaQuery maxWidth={cellPhoneBreakpoint}>
                     <ReactImageGallery
                         ref={(i) => { this.imageGallery = i; }}

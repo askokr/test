@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import ImageGallery from './gallery';
+import IFrameTesTComponent from './iframe';
 
 class App extends Component {
   render() {
@@ -28,6 +29,10 @@ class App extends Component {
         </header>
         <container style={{ maxWidth: '1200px', }}>
           <ImageGallery images={images} />
+          <IFrameTesTComponent />
+          <p>
+            <a href="http://www.äripäev.ee">LINK</a>
+          </p>
         </container>
       </div>
     );
