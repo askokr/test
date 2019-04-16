@@ -28,7 +28,7 @@ class App extends Component {
           <h1>Galerii test</h1>
         </header>
         <container style={{ maxWidth: '1200px', }}>
-          {/* <ImageGallery images={images} /> */}
+          <ImageGallery images={images} />
           <IFrameTesTComponent />
           <p>
             <a href="http://www.äripäev.ee">LINK</a>
