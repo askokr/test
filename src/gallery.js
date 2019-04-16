@@ -25,21 +25,43 @@ const GalleryContainer = styled.div`
     margin: 0 auto;
   }
 `;
+const DescriptionContainer = styled.div`
+  display: ${props => (props.displayText ? 'inline-block' : 'none')};
+`;
+const GallerySizeDisplay = styled.span`
+  z-index: 1;
+  position: absolute;
+  color: ${color.galleryText};
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 27.6px 30px;
+  font-weight: bold;
+  border-radius: 0 0 10px 0;
 
+  @media (max-width: ${cellPhoneBreakpoint}) {
+    padding: 20.2px;
+    font-size: 13px;
+  }
+`;
 const ImageContainer = styled.div`
   display: flex;
 `;
-
+const ImageWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+`;
 const Image = styled(ObjectFitImage)`
   height: 50vm;
   height: 50vmin;
+  height: unset;
   width: 100%;
   margin: 0 auto;
-  background: ${color.pageBackground};
+  background: #000;
 `;
 const ImageInFull = styled(ObjectFitImage)`
   height: 100vh;
-  width: 100%;
+  ${props => (props.isMobile && 'width: 100vw !important;')}
   margin: 0 auto;
   background: #000;
 `;
@@ -49,51 +71,50 @@ class ImageGallery extends React.Component {
         currentIndex: 0,
         isFullscreen: false,
         displayText: true,
-    }
-    componentDidMount() {
+      }
+      componentDidMount() {
         if (this.props.galleryState !== undefined && this.props.galleryState.gallery === this.props.images[0].uuid) {
-            this.toggleFullScreen();
-            const index = parseInt(this.props.galleryState.image, 10) - 1;
-            if (index < this.props.images.length && index > 0) {
-                this.handleSlide(index);
-            }
+          this.toggleFullScreen();
+          const index = parseInt(this.props.galleryState.image, 10) - 1;
+          if (index < this.props.images.length && index > 0) {
+            this.handleSlide(index);
+          }
         }
-    }
-    componentWillUpdate(nextProps, nextState) {
+      }
+      componentWillUpdate(nextProps, nextState) {
         if (nextState.isFullscreen) {
-            window.addEventListener('keydown', this.handleKeyDown);
-            window.addEventListener('wheel', this.handleWheel, { passive: false });
-            window.addEventListener('touchmove', this.handleTouch, { passive: false });
-            window.addEventListener('touchend', this.handleTouchEnd, { passive: false });
+          window.addEventListener('keydown', this.handleKeyDown);
+          window.addEventListener('wheel', this.handleWheel, { passive: false });
+          window.addEventListener('touchmove', this.handleTouch, { passive: false });
+          window.addEventListener('touchend', this.handleTouchEnd, { passive: false });
         } else {
-            window.removeEventListener('keydown', this.handleKeyDown);
-            window.removeEventListener('wheel', this.handleWheel);
-            window.removeEventListener('touchmove', this.handleTouch);
-            window.removeEventListener('touchend', this.handleTouchEnd);
+          window.removeEventListener('keydown', this.handleKeyDown);
+          window.removeEventListener('wheel', this.handleWheel);
+          window.removeEventListener('touchmove', this.handleTouch);
+          window.removeEventListener('touchend', this.handleTouchEnd);
         }
-    }
-    componentDidUpdate() {
-        console.log(this.zoomedImage)
+      }
+      componentDidUpdate() {
         if (this.imageGallery.getCurrentIndex() !== this.state.currentIndex) {
-            this.handleIndexUpdate();
+          this.handleIndexUpdate();
         }
-    }
-    componentWillUnmount() {
+      }
+      componentWillUnmount() {
         window.removeEventListener('keydown', this.handleKeyDown);
         window.removeEventListener('wheel', this.handleWheel);
         window.removeEventListener('touchmove', this.handleTouch);
         window.removeEventListener('touchend', this.handleTouchEnd);
-    }
-    handleIndexUpdate() {
+      }
+      handleIndexUpdate() {
         updateHistory(history, `?gallery=${this.props.images[0].uuid}&image=${this.imageGallery.getCurrentIndex() + 1}`);
         this.setState({ currentIndex: this.imageGallery.getCurrentIndex() });
-    }
-    handleSlide(slide) {
+      }
+      handleSlide(slide) {
         this.imageGallery.slideToIndex(slide);
         updateHistory(history, `?gallery=${this.props.images[0].uuid}&image=${slide + 1}`);
         this.setState({ currentIndex: slide });
-    }
-    handleKeyDown = (event) => {
+      }
+      handleKeyDown = (event) => {
         const LEFT_ARROW = 37;
         const RIGHT_ARROW = 39;
         const UP_ARROW = 38;
@@ -101,140 +122,151 @@ class ImageGallery extends React.Component {
         const ESC_KEY = 27;
         const key = parseInt(event.keyCode || event.which || 0, 10);
         switch (key) {
-            case LEFT_ARROW:
-                this.navigateToPrevious();
-                break;
-            case RIGHT_ARROW:
-                this.navigateToNext();
-                break;
-            case UP_ARROW:
-                event.preventDefault();
-                this.navigateToPrevious();
-                break;
-            case DOWN_ARROW:
-                event.preventDefault();
-                this.navigateToNext();
-                break;
-            case ESC_KEY:
-                if (this.state.isFullscreen && !this.props.useBrowserFullscreen) this.toggleFullScreen();
-                break;
-            default:
-                break;
-        }
-    };
-    handleWheel = (event) => {
-        if (this.state.isFullscreen) {
+          case LEFT_ARROW:
+            this.navigateToPrevious();
+            break;
+          case RIGHT_ARROW:
+            this.navigateToNext();
+            break;
+          case UP_ARROW:
             event.preventDefault();
-            const direction = event.deltaY;
-            if (direction > 0) {
-                this.navigateToNext();
-            }
-            if (direction < 0) {
-                this.navigateToPrevious();
-            }
+            this.navigateToPrevious();
+            break;
+          case DOWN_ARROW:
+            event.preventDefault();
+            this.navigateToNext();
+            break;
+          case ESC_KEY:
+            if (this.state.isFullscreen && !this.props.useBrowserFullscreen) this.toggleFullScreen();
+            break;
+          default:
+            break;
         }
-    }
-    handleTouch = event => event.preventDefault();
-    handleTouchEnd = () => this.handleIndexUpdate();
-    navigateToPrevious = () => {
+      };
+      handleWheel = (event) => {
+        if (this.state.isFullscreen) {
+          event.preventDefault();
+          const direction = event.deltaY;
+          if (direction > 0) {
+            this.navigateToNext();
+          }
+          if (direction < 0) {
+            this.navigateToPrevious();
+          }
+        }
+      }
+      handleTouch = event => event.preventDefault();
+      handleTouchEnd = () => this.handleIndexUpdate();
+      navigateToPrevious = () => {
         const { currentIndex } = this.state;
         const indexDown = currentIndex - 1;
         const firstSlide = 0;
         const lastSlide = this.props.images.length - 1;
         if (indexDown >= firstSlide) {
-            this.handleSlide(indexDown);
+          this.handleSlide(indexDown);
         } else {
-            this.handleSlide(lastSlide);
+          this.handleSlide(lastSlide);
         }
-    }
-    navigateToNext = () => {
+      }
+      navigateToNext = () => {
         const { currentIndex } = this.state;
         const indexUp = currentIndex + 1;
         const firstSlide = 0;
         const lastSlide = this.props.images.length - 1;
         if (indexUp <= lastSlide) {
-            this.handleSlide(indexUp);
+          this.handleSlide(indexUp);
         } else {
-            this.handleSlide(firstSlide);
+          this.handleSlide(firstSlide);
         }
-    }
-    toggleFullScreen = () => {
+      }
+      toggleFullScreen = () => {
         if (this.state.isFullscreen) {
-            this.imageGallery.exitFullScreen();
-            updateHistory(history, window.location.pathname);
+          this.imageGallery.exitFullScreen();
+          updateHistory(history, window.location.pathname);
         } else {
-            this.imageGallery.fullScreen();
-            updateHistory(history, `?gallery=${this.props.images[0].uuid}&image=${this.state.currentIndex + 1}`);
+          this.imageGallery.fullScreen();
+          updateHistory(history, `?gallery=${this.props.images[0].uuid}&image=${this.state.currentIndex + 1}`);
         }
-        this.setState({ isFullscreen: !this.state.isFullscreen });
-    };
-    textHider = () => {
+        this.setState({ isFullscreen: !this.state.isFullscreen, displayText: true });
+      };
+      imageDescriptionHider = () => {
         this.setState({ displayText: !this.state.displayText });
-    }
-    GallerySize = () => (
-        <span className="AAA">{this.props.images.length} {this.props.images.length === 1 ? 'onePhoto' : 'severalPhotos'}</span>
-    )
-    GalleryMainImage = item => (
-        <ImageContainer onClick={() => this.textHider()}>
-
-            <PinchToZoom
-                ref={(i) => { this.zoomedImage = i }}
-                contentSize={{ width: 50, height: 50 }}
-                boundSize={{ width: 50, height: 50 }}
-            >
-                <ImageInFull
+      }
+      GallerySize = () => (
+        <GallerySizeDisplay>{this.props.images.length} {this.props.images.length === 1 ? translate('onePhoto') : translate('severalPhotos')}</GallerySizeDisplay>
+      )
+      GalleryFrontImage = item => (
+        <Image
+          src={item.original}
+          alt={item.originalAlt}
+          srcSet={item.srcSet}
+          objectFit="contain"
+          onClick={() => this.props.registertClick !== null && this.props.registerClick(ARTICLE_P_GALLERY)}
+        />
+      );
+      GalleryMainImage = item => (
+        <ImageContainer>
+          {
+            item.isMobile
+              ? (
+                <PinchToZoom>
+                  <ImageWrapper onClick={this.imageDescriptionHider}>
+                    <ImageInFull
+                      src={item.original}
+                      alt={item.originalAlt}
+                      srcSet={item.srcSet}
+                      objectFit="contain"
+                      isFullscreen={this.state.isFullscreen}
+                      isMobile={item.isMobile}
+                    />
+                  </ImageWrapper>
+                </PinchToZoom>
+              )
+              : (
+                <ImageWrapper onClick={this.imageDescriptionHider}>
+                  <ImageInFull
                     src={item.original}
                     alt={item.originalAlt}
                     srcSet={item.srcSet}
-                    style={{ maxWidth: '100%' }}
                     objectFit="contain"
                     isFullscreen={this.state.isFullscreen}
-
-                />
-            </PinchToZoom>
-            <div className="image-gallery-description" style={{ display: this.state.displayText ? 'inline-block' : 'none' }}>
-                <ImageGalleryTitle
-                    text={item.info.text}
-                    authors={item.info.authors}
-                    isFullscreen
-                    queryString={`?gallery=${this.props.images[0].uuid}&image=${this.state.currentIndex + 1}`}
-                    displayText={this.state.displayText}
-                    hideText={() => this.textHider()}
-                />
-            </div>
+                    isMobile={item.isMobile}
+                  />
+                </ImageWrapper>
+              )
+          }
+          <DescriptionContainer className="image-gallery-description" displayText={this.state.displayText}>
+            <ImageGalleryTitle
+              text={item.info.text}
+              authors={item.info.authors}
+              isFullscreen
+              queryString={`?gallery=${this.props.images[0].uuid}&image=${this.state.currentIndex + 1}`}
+            />
+          </DescriptionContainer>
         </ImageContainer>
-    );
-    GalleryFrontImage = item => (
-        <Image
-            src={item.original}
-            alt={item.originalAlt}
-            srcSet={item.srcSet}
-            style={{ maxWidth: '100%', height: 'unset', maxHeight: '600px', background: '#000000' }}
-            objectFit="contain"
-        />
-    );
-    FullscreenButton = () => (
+      );
+      FullscreenButton = () => (
         <button
-            type="button"
-            className={
-                `image-gallery-fullscreen-button${this.state.isFullscreen ? ' active' : ' inactive'}`}
-            onClick={this.toggleFullScreen}
+          type="button"
+          className={
+            `image-gallery-fullscreen-button${this.state.isFullscreen ? ' active' : ''}`}
+          onClick={this.toggleFullScreen}
         />
-    )
-    LeftNav = () => (
+      )
+      LeftNav = () => (
         <button
-            type="button"
-            className="image-gallery-left-nav"
-            onClick={this.navigateToPrevious}
+          type="button"
+          className="image-gallery-left-nav"
+          onClick={this.navigateToPrevious}
         />
-    )
-    RightNav = () => (
+      )
+      RightNav = () => (
         <button
-            type="button"
-            className="image-gallery-right-nav"
-            onClick={this.navigateToNext}
+          type="button"
+          className="image-gallery-right-nav"
+          onClick={this.navigateToNext}
         />
-    )
+      )
     render() {
         const { images = [] } = this.props;
         const { currentIndex, isFullscreen } = this.state;
@@ -260,7 +292,6 @@ class ImageGallery extends React.Component {
                         showPlayButton={false}
                         showIndex={!!isFullscreen}
                         disableArrowKeys={!isFullscreen}
-                        disableSwipe={!isFullscreen}
                         onThumbnailClick={() => isFullscreen && this.forceUpdate()}
                         onClick={() => !isFullscreen && this.toggleFullScreen()}
                         additionalClass={additionalClass}
@@ -282,6 +313,7 @@ class ImageGallery extends React.Component {
                                 text,
                             },
                             srcSet: imageSourceset(url),
+                            isMobile: true,
                         }))}
                         lazyLoad
                         showThumbnails={false}
@@ -289,6 +321,8 @@ class ImageGallery extends React.Component {
                         showPlayButton={false}
                         showIndex={!!isFullscreen}
                         disableArrowKeys={!isFullscreen}
+                        disableScroll={!isFullscreen}
+                        disableSwipe={!isFullscreen}
                         onClick={() => !isFullscreen && this.toggleFullScreen()}
                         additionalClass={additionalClass}
                         renderCustomControls={!isFullscreen && this.GallerySize}
