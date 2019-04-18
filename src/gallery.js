@@ -193,7 +193,7 @@ class ImageGallery extends React.Component {
         this.setState({ displayText: !this.state.displayText });
       }
       GallerySize = () => (
-        <GallerySizeDisplay>{this.props.images.length} {this.props.images.length === 1 ? translate('onePhoto') : translate('severalPhotos')}</GallerySizeDisplay>
+        <GallerySizeDisplay>{this.props.images.length} {this.props.images.length === 1 ? 'onePhoto' : 'severalPhotos'}</GallerySizeDisplay>
       )
       GalleryFrontImage = item => (
         <Image
@@ -201,7 +201,6 @@ class ImageGallery extends React.Component {
           alt={item.originalAlt}
           srcSet={item.srcSet}
           objectFit="contain"
-          onClick={() => this.props.registertClick !== null && this.props.registerClick(ARTICLE_P_GALLERY)}
         />
       );
       GalleryMainImage = item => (

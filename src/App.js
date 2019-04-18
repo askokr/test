@@ -27,13 +27,13 @@ class App extends Component {
         <header className="App-header">
           <h1>Galerii test</h1>
         </header>
-        <container style={{ maxWidth: '1200px', }}>
+        <div style={{ maxWidth: '1200px', width: '1200px', margin: '0 auto' }}>
           <ImageGallery images={images} />
           <IFrameTesTComponent />
           <p>
             <a href="http://www.äripäev.ee">LINK</a>
           </p>
-        </container>
+        </div>
       </div>
     );
   }
