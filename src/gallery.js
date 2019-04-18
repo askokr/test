@@ -61,7 +61,7 @@ const Image = styled(ObjectFitImage)`
 `;
 const ImageInFull = styled(ObjectFitImage)`
   height: 100vh;
-  ${props => (props.isMobile && 'width: 100vw !important;')}
+  width: 100vw !important;
   margin: 0 auto;
   background: #000;
 `;
