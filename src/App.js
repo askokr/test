@@ -27,7 +27,8 @@ class App extends Component {
         <header className="App-header">
           <h1>Galerii test</h1>
         </header>
-        <div style={{ maxWidth: '1200px', width: '1200px', margin: '0 auto' }}>
+        {/* <div style={{ maxWidth: '1200px', width: '1200px', margin: '0 auto' }}> */}
+        <div>
           <ImageGallery images={images} />
           <IFrameTesTComponent />
           <p>
