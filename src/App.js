@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import ImageGallery from './gallery';
 import IFrameTesTComponent from './iframe';
+import ScrollLoader from './scrollLoader';
+
 
 class App extends Component {
   render() {
@@ -33,6 +35,7 @@ class App extends Component {
           <p>
             <a href="http://www.äripäev.ee">LINK</a>
           </p>
+          <ScrollLoader />
         </div>
       </div>
     );
