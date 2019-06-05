@@ -4,6 +4,7 @@ import ImageGallery from './gallery';
 import IFrameTesTComponent from './iframe';
 import ScrollLoader from './scrollLoader';
 
+const content = 'See siin on maailma tähtsaim <a href="http://www.äripäev.ee" target="_blank" rel="noopener noreferrer">LINK</a>';
 
 class App extends Component {
   state = {
@@ -35,9 +36,11 @@ class App extends Component {
         <div className="content">
           <ImageGallery images={images} />
           <IFrameTesTComponent />
-          <p onClick={() => this.setState({color: !this.state.color})}>
-            <a  style={{color: this.state.color ? 'hotpink' : 'green'}} href="http://www.äripäev.ee" target="_blank" rel="noopener noreferrer">LINK</a>
-          </p>
+          <p
+            onClick={() => this.setState({color: !this.state.color})}
+            style={{color: this.state.color ? 'hotpink' : 'green'}}
+            dangerouslySetInnerHTML={{ __html: content }}
+          />
           <ScrollLoader />
         </div>
       </div>
