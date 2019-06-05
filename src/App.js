@@ -35,8 +35,8 @@ class App extends Component {
         <div className="content">
           <ImageGallery images={images} />
           <IFrameTesTComponent />
-          <p style={{color: this.state.color ? 'hotpink' : 'green'}} onClick={() => this.setState({color: !this.state.color})}>
-            <a href="http://www.äripäev.ee" target="_blank" rel="noopener noreferrer">LINK</a>
+          <p onClick={() => this.setState({color: !this.state.color})}>
+            <a  style={{color: this.state.color ? 'hotpink' : 'green'}} href="http://www.äripäev.ee" target="_blank" rel="noopener noreferrer">LINK</a>
           </p>
           <ScrollLoader />
         </div>
