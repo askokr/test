@@ -6,6 +6,9 @@ import ScrollLoader from './scrollLoader';
 
 
 class App extends Component {
+  state = {
+    color: false
+  }
   render() {
     const images = [
       {
@@ -32,7 +35,7 @@ class App extends Component {
         <div className="content">
           <ImageGallery images={images} />
           <IFrameTesTComponent />
-          <p>
+          <p style={{color: this.state.color ? 'hotpink' : 'green'}} onClick={() => this.setState({color: !this.state.color})}>
             <a href="http://www.äripäev.ee">LINK</a>
           </p>
           <ScrollLoader />
