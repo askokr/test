@@ -17,6 +17,10 @@
     {
       "platform": "play",
       "id": "ee.aripaev.app"
+    },
+    {
+      "platform": "ios",
+      "id": "477103078"
     }
   ]
 }
