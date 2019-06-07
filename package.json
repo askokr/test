@@ -17,6 +17,7 @@
     "react-responsive": "^6.0.1",
     "react-scripts": "^2.1.8",
     "react-smartbanner": "^5.1.3",
+    "smartbanner.js": "^1.13.0",
     "styled-components": "^4.1.3"
   },
   "scripts": {
