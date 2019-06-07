@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Helmet } from "react-helmet";
 
 import './App.css';
 import ImageGallery from './gallery';
@@ -32,9 +31,6 @@ class App extends Component {
     ]
     return (
       <div className="App">
-        <Helmet>
-          <meta name="apple-itunes-app" content="app-id=477103078" />
-        </Helmet>
         <header className="App-header">
           <h1>Galerii test</h1>
         </header>
