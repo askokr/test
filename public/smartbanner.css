@@ -37,9 +37,7 @@
       -webkit-transform: rotate(-45deg);
               transform: rotate(-45deg); }
   .smartbanner__icon {
-    position: fixed;
-    position: sticky;
-    position: -webkit-sticky;
+    position: absolute;
     top: 10px;
     left: 30px;
     width: 64px;
