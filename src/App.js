@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import SmartBanner from 'react-smartbanner';
 import 'react-smartbanner/dist/main.css';
 
 import './App.css';
@@ -37,7 +36,6 @@ class App extends Component {
           <h1>Galerii test</h1>
         </header>
         <div className="content">
-          <SmartBanner title={'Äripäev'} />
           <ImageGallery images={images} />
           <IFrameTesTComponent />
           <p
