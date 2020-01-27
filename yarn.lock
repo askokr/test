@@ -7490,11 +7490,6 @@ pify@^4.0.1:
   resolved "https://registry.yarnpkg.com/pify/-/pify-4.0.1.tgz#4b2cd25c50d598735c50292224fd8c6df41e3231"
   integrity sha512-uB80kBFb/tfd68bVleG9T5GGsGPjJrLAUpR5PZIrhBnIaRTQRjqdJSsIKkOP6OAIFbj7GOrcudc5pNjZ+geV2g==
 
-pinch-to-zoom@^0.1.2:
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/pinch-to-zoom/-/pinch-to-zoom-0.1.2.tgz#0451321071e815027c504fca6a74b482a637aac8"
-  integrity sha512-zHRClg0XLU9MgQxPiRSO6szcE+tqNYDB6drKdc1YzvQ/z3Lbs43Prfq1W20/DixkPHgzKlzm1egj7KpozLR2rg==
-
 pinkie-promise@^2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/pinkie-promise/-/pinkie-promise-2.0.1.tgz#2135d6dfa7a358c069ac9b178776288228450ffa"
@@ -8576,6 +8571,11 @@ react-is@^16.6.0, react-is@^16.8.1:
   version "16.11.0"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.11.0.tgz#b85dfecd48ad1ce469ff558a882ca8e8313928fa"
   integrity sha512-gbBVYR2p8mnriqAwWx9LbuUrShnAuSCNnuPGyc7GJrMVQtPDAh8iLpv7FRuMPFb56KkaVZIYSz1PrjI9q0QPCw==
+
+react-pinch-and-zoom@^1.2.4:
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/react-pinch-and-zoom/-/react-pinch-and-zoom-1.2.4.tgz#d63bdc4e7eb3b236a442780758af3f01728a34b2"
+  integrity sha512-b7a8T3gXstrACnMo2GbQ4UfDxj6IxD6pb2O5U0UrEiQQIC4fqBcDqBAZC2jjYVfuOflb0sQEp+j+8B/84SgQGg==
 
 react-responsive@^6.1.2:
   version "6.1.2"

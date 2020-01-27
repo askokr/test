@@ -37,13 +37,13 @@ class App extends Component {
         </header>
         <div className="content">
           <ImageGallery images={images} />
-          <IFrameTesTComponent />
+          {/* <IFrameTesTComponent />
           <p
             onClick={() => this.setState({color: !this.state.color})}
             style={{color: this.state.color ? 'hotpink' : 'green'}}
             dangerouslySetInnerHTML={{ __html: content }}
-          />
-          <ScrollLoader />
+          /> */}
+          {/* <ScrollLoader /> */}
         </div>
       </div>
     );

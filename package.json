@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "pinch-to-zoom": "^0.1.2",
     "prop-types": "^15.7.2",
     "qs": "^6.7.0",
     "ramda": "^0.26.1",
@@ -13,6 +12,7 @@
     "react-helmet": "^5.2.1",
     "react-html-parser": "^2.0.2",
     "react-image-gallery": "^0.8.17",
+    "react-pinch-and-zoom": "^1.2.4",
     "react-responsive": "^6.1.2",
     "react-scripts": "^2.1.8",
     "react-smartbanner": "^5.1.3",
