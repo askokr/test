@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import 'react-smartbanner/dist/main.css';
 
 import './App.css';
 import ImageGallery from './gallery';
-import IFrameTesTComponent from './iframe';
-import ScrollLoader from './scrollLoader';
+// import IFrameTesTComponent from './iframe';
+// import ScrollLoader from './scrollLoader';
 
-const content = 'See siin on maailma tähtsaim <a href="http://www.äripäev.ee" target="_blank" rel="noopener noreferrer">LINK</a>';
+// const content = 'See siin on maailma tähtsaim <a href="http://www.äripäev.ee" target="_blank" rel="noopener noreferrer">LINK</a>';
 
 class App extends Component {
   state = {
