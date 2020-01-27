@@ -50,6 +50,7 @@ const ImageGallery = ({ analyticsLabel, images = [], registerClick = () => { } }
       window.removeEventListener('wheel', handleWheel);
       window.removeEventListener('keydown', handleKeyDown);
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isFullscreen]);
 
   useEffect(() => {
@@ -57,7 +58,7 @@ const ImageGallery = ({ analyticsLabel, images = [], registerClick = () => { } }
     const input = `${origin}${pathname}${isFullscreen ? `?gallery=${images[0].uuid}&imageNr=${currentSlide}` : ''}`;
     // eslint-disable-next-line no-restricted-globals
     history.replaceState(null, null, `${input}`);
-  }, [isFullscreen, currentSlide]);
+  }, [isFullscreen, currentSlide, images]);
 
   const toggleFullScreen = () => {
     if (isFullscreen) {
