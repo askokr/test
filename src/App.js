@@ -33,8 +33,8 @@ class App extends Component {
       }
     ]
     return (
-      <div className="App">
-        <Helmet>
+      <>
+       <Helmet>
           <title>test gallery</title>
           <meta name="description" content="test description" />
           <meta property="og:image" content={`${MAIN_URL}/icons/icon-512x512.png`} />
@@ -49,21 +49,22 @@ class App extends Component {
           <meta property="og:site_name" content="testgalerii"></meta>
           <meta property="og:type" content="website"></meta>
         </Helmet>
-
-        <header className="App-header">
-          <h1>Galerii test</h1>
-        </header>
-        <div className="content">
-          <ImageGallery images={images} />
-          {/* <IFrameTesTComponent />
-          <p
-            onClick={() => this.setState({color: !this.state.color})}
-            style={{color: this.state.color ? 'hotpink' : 'green'}}
-            dangerouslySetInnerHTML={{ __html: content }}
-          /> */}
-          {/* <ScrollLoader /> */}
+        <div className="App">
+          <header className="App-header">
+            <h1>Galerii test</h1>
+          </header>
+          <div className="content">
+            <ImageGallery images={images} />
+            {/* <IFrameTesTComponent />
+            <p
+              onClick={() => this.setState({color: !this.state.color})}
+              style={{color: this.state.color ? 'hotpink' : 'green'}}
+              dangerouslySetInnerHTML={{ __html: content }}
+            /> */}
+            {/* <ScrollLoader /> */}
+          </div>
         </div>
-      </div>
+      </>
     );
   }
 }
