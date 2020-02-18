@@ -40,8 +40,10 @@ class App extends Component {
           <meta property="og:image" content={`${MAIN_URL}/icons/icon-512x512.png`} />
           <meta property="og:image:width" content="512" />
           <meta property="og:image:height" content="512" />
-          <meta name="twitter:image" content={`${MAIN_URL}/icons/icon-512x512.png`} />
           <meta name="twitter:card" content="summary" />
+          <meta name="twitter:site" content="@aripaev" />
+          <meta name="twitter:description" content="test description for twitter" />
+          <meta name="twitter:image" content={`${MAIN_URL}/icons/icon-512x512.png`} />
         </Helmet>
 
         <header className="App-header">
