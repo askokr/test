@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Helmet from 'react-helmet';
 
 import './App.css';
 import ImageGallery from './gallery';
@@ -33,11 +34,18 @@ class App extends Component {
     ]
     return (
       <div className="App">
-        <header className="App-header">
-          <h1>Galerii test</h1>
+        <Helmet>
+          <title>test gallery</title>
+          <meta name="description" content="test description" />
           <meta property="og:image" content={`${MAIN_URL}/icons/icon-512x512.png`} />
           <meta property="og:image:width" content="512" />
           <meta property="og:image:height" content="512" />
+          <meta name="twitter:image" content={`${MAIN_URL}/icons/icon-512x512.png`} />
+          <meta name="twitter:card" content="summary" />
+        </Helmet>
+
+        <header className="App-header">
+          <h1>Galerii test</h1>
         </header>
         <div className="content">
           <ImageGallery images={images} />
