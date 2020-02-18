@@ -15,8 +15,7 @@
     "react-pinch-and-zoom": "1.2.4",
     "react-responsive": "8.0.1",
     "react-scripts": "3.4.0",
-    "styled-components": "5.0.0",
-    "win-node-env": "0.4.0"
+    "styled-components": "5.0.0"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -7,6 +7,8 @@ import ImageGallery from './gallery';
 
 // const content = 'See siin on maailma tähtsaim <a href="http://www.äripäev.ee" target="_blank" rel="noopener noreferrer">LINK</a>';
 
+const MAIN_URL = "https://testgalerii.netlify.com/";
+
 class App extends Component {
   state = {
     color: false
@@ -33,6 +35,9 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <h1>Galerii test</h1>
+          <meta property="og:image" content={`${MAIN_URL}/icons/icon-512x512.png`} />
+          <meta property="og:image:width" content="512" />
+          <meta property="og:image:height" content="512" />
         </header>
         <div className="content">
           <ImageGallery images={images} />
