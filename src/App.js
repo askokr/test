@@ -40,16 +40,13 @@ class App extends Component {
           <meta property="og:image" content={`${MAIN_URL}/icons/icon-512x512.png`} />
           <meta property="og:image:width" content="512" />
           <meta property="og:image:height" content="512" />
-          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:card" content="summary" />
           <meta name="twitter:site" content="@aripaev_ee" />
           <meta name="twitter:title" content="Twitter demo title" />
           <meta name="twitter:description" content="test description for twitter" />
-          <meta name="twitter:image" content={`${MAIN_URL}/icons/icon-512x512.png`} />
-          <meta name="twitter:image:alt" content={`${MAIN_URL}/icons/icon-512x512.png`} />
           <meta property="og:title" content="testgalerii: Värsked uudised Eestist ja välismaalt"></meta>
           <meta property="og:url" content={MAIN_URL}></meta>
           <meta property="og:site_name" content="testgalerii"></meta>
-          <meta property="og:description" content="testgalerii: Värsked uudised Eestist ja välismaalt. Loe lähemalt"></meta>
           <meta property="og:type" content="website"></meta>
         </Helmet>
 
